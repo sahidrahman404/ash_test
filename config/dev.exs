@@ -54,3 +54,13 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+# ashpostgres
+config :ash_test, AshTest.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "ash_test_dev",
+  port: 5432,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10

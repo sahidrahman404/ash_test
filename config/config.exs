@@ -26,6 +26,13 @@ config :ash_test, AshTestWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :ash_test, AshTest.Mailer, adapter: Swoosh.Adapters.Local
 
+## ash
+config :ash_test,
+  ash_apis: [AshTest.Support]
+
+config :ash_test,
+  ecto_repos: [AshTest.Repo]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
