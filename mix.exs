@@ -42,7 +42,8 @@ defmodule AshTest.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:ash, "~> 2.5.12"},
       {:elixir_sense, github: "elixir-lsp/elixir_sense", only: [:dev, :test]},
-      {:ash_postgres, "~> 1.3.2"}
+      {:ash_postgres, "~> 1.3.2"},
+      {:ash_json_api, "~> 0.31.1"}
     ]
   end
 
