@@ -40,6 +40,8 @@ defmodule AshTest.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:ash, "~> 2.5.12"},
+      {:elixir_sense, github: "elixir-lsp/elixir_sense", only: [:dev, :test]},
       {:ash_postgres, "~> 1.3.2"}
     ]
   end
