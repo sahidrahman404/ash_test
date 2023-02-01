@@ -43,7 +43,9 @@ defmodule AshTest.MixProject do
       {:ash, "~> 2.5.12"},
       {:elixir_sense, github: "elixir-lsp/elixir_sense", only: [:dev, :test]},
       {:ash_postgres, "~> 1.3.2"},
-      {:ash_json_api, "~> 0.31.1"}
+      {:ash_json_api, "~> 0.31.1"},
+      {:ash_graphql, "~> 0.22.4"},
+      {:absinthe_plug, "~> 1.5.8"}
     ]
   end
 
