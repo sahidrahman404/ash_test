@@ -2,7 +2,26 @@ defmodule AshTest.Support.Ticket do
   # This turns this module into a resource
   use Ash.Resource,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshJsonApi.Resource]
+    extensions: [AshJsonApi.Resource, AshGraphql.Resource]
+
+  graphql do
+    type(:ticket)
+
+    queries do
+      # <- create a field called `get_ticket` that uses the `read` read action to fetch a single post
+      get(:get_ticket, :read)
+
+      # <- create a field called `list_tickets` that uses the `read` read action to fetch a list of posts
+      list(:list_tickets, :read)
+    end
+
+    mutations do
+      # And so on
+      create(:create_ticket, :open)
+      update(:update_ticket, :update)
+      destroy(:destroy_ticket, :destroy)
+    end
+  end
 
   json_api do
     type("tickets")
@@ -10,7 +29,7 @@ defmodule AshTest.Support.Ticket do
     routes do
       base("tickets")
       get(:read)
-      index :read
+      index(:read)
       post(:open)
       patch(:close)
       delete(:by_id)
@@ -18,8 +37,8 @@ defmodule AshTest.Support.Ticket do
   end
 
   postgres do
-    table "tickets"
-    repo AshTest.Repo
+    table("tickets")
+    repo(AshTest.Repo)
   end
 
   actions do
@@ -53,11 +72,7 @@ defmodule AshTest.Support.Ticket do
         allow_nil?(false)
       end
 
-      change(
-        manage_relationship(:representative_id, :representative,
-          type: :append_and_remove
-        )
-      )
+      change(manage_relationship(:representative_id, :representative, type: :append_and_remove))
     end
   end
 
@@ -91,7 +106,7 @@ defmodule AshTest.Support.Ticket do
   end
 
   relationships do
-    belongs_to :representative, AshTest.Support.Representative
+    belongs_to(:representative, AshTest.Support.Representative)
   end
 
   code_interface do
