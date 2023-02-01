@@ -33,6 +33,10 @@ config :ash_test,
 config :ash_test,
   ecto_repos: [AshTest.Repo]
 
+config :mime, :types, %{
+  "application/vnd.api+json" => ["json"]
+}
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
