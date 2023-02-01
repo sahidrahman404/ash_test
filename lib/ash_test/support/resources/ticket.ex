@@ -1,6 +1,21 @@
 defmodule AshTest.Support.Ticket do
   # This turns this module into a resource
-  use Ash.Resource, data_layer: AshPostgres.DataLayer
+  use Ash.Resource,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshJsonApi.Resource]
+
+  json_api do
+    type("tickets")
+
+    routes do
+      base("tickets")
+      get(:read)
+      index :read
+      post(:open)
+      patch(:close)
+      delete(:by_id)
+    end
+  end
 
   postgres do
     table "tickets"
@@ -11,13 +26,7 @@ defmodule AshTest.Support.Ticket do
     # Add a set of simple actions. You'll customize these later.
     defaults([:create, :read, :update, :destroy])
 
-    read :find_by_id do
-      argument :id, :uuid do
-        allow_nil?(false)
-      end
-
-      filter(expr(id == ^arg(:id)))
-    end
+    destroy(:by_id, primary?: true)
 
     create :open do
       # By default you can provide all public attributes to an action
@@ -89,7 +98,5 @@ defmodule AshTest.Support.Ticket do
     define_for(AshTest.Support)
 
     define(:open, args: [:subject])
-    define(:destroy)
-    define(:find_by_id, args: [:id])
   end
 end
