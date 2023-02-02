@@ -18,7 +18,8 @@ defmodule AshTest.Application do
       AshTestWeb.Endpoint,
       # Start a worker by calling: AshTest.Worker.start_link(arg)
       # {AshTest.Worker, arg}
-      AshTest.Repo
+      AshTest.Repo,
+      {AshAuthentication.Supervisor, otp_app: :ash_test}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
