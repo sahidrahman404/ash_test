@@ -45,7 +45,9 @@ defmodule AshTest.MixProject do
       {:ash_postgres, "~> 1.3.2"},
       {:ash_json_api, "~> 0.31.1"},
       {:ash_graphql, "~> 0.22.4"},
-      {:absinthe_plug, "~> 1.5.8"}
+      {:absinthe_plug, "~> 1.5.8"},
+      {:ash_authentication, "~> 3.7.6"},
+      {:ash_authentication_phoenix, "~> 1.4.7"}
     ]
   end
 
