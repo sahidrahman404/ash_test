@@ -2,13 +2,33 @@
   "attributes": [
     {
       "allow_nil?": false,
-      "default": "nil",
+      "default": "fragment(\"uuid_generate_v4()\")",
       "generated?": false,
       "primary_key?": true,
       "references": null,
       "size": null,
       "source": "id",
       "type": "uuid"
+    },
+    {
+      "allow_nil?": false,
+      "default": "fragment(\"now()\")",
+      "generated?": false,
+      "primary_key?": false,
+      "references": null,
+      "size": null,
+      "source": "created_at",
+      "type": "utc_datetime_usec"
+    },
+    {
+      "allow_nil?": false,
+      "default": "fragment(\"now()\")",
+      "generated?": false,
+      "primary_key?": false,
+      "references": null,
+      "size": null,
+      "source": "updated_at",
+      "type": "utc_datetime_usec"
     },
     {
       "allow_nil?": false,
@@ -60,7 +80,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "B49F8F7C3BC9B2F2927B29F44DF7DD7A0C8FD8BB3450D3F388B012CB8EC1629D",
+  "hash": "565CD42949BC21AF86AF7422A40FED6808A32551E74823F2129CC97236D6A7A3",
   "identities": [],
   "multitenancy": {
     "attribute": null,

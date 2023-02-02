@@ -2,7 +2,7 @@
   "attributes": [
     {
       "allow_nil?": false,
-      "default": "nil",
+      "default": "fragment(\"uuid_generate_v4()\")",
       "generated?": false,
       "primary_key?": true,
       "references": null,
@@ -37,17 +37,27 @@
       "primary_key?": false,
       "references": null,
       "size": null,
-      "source": "subject",
+      "source": "name",
       "type": "text"
     },
     {
-      "allow_nil?": false,
-      "default": "\"open\"",
+      "allow_nil?": true,
+      "default": "nil",
       "generated?": false,
       "primary_key?": false,
       "references": null,
       "size": null,
-      "source": "status",
+      "source": "bio",
+      "type": "text"
+    },
+    {
+      "allow_nil?": true,
+      "default": "\"non_binary\"",
+      "generated?": false,
+      "primary_key?": false,
+      "references": null,
+      "size": null,
+      "source": "sex",
       "type": "text"
     },
     {
@@ -64,14 +74,14 @@
           "global": null,
           "strategy": null
         },
-        "name": "tickets_representative_id_fkey",
+        "name": "users_account_id_fkey",
         "on_delete": null,
         "on_update": null,
         "schema": "public",
-        "table": "representatives"
+        "table": "accounts"
       },
       "size": null,
-      "source": "representative_id",
+      "source": "account_id",
       "type": "uuid"
     }
   ],
@@ -79,8 +89,8 @@
   "check_constraints": [],
   "custom_indexes": [],
   "custom_statements": [],
-  "has_create_action": true,
-  "hash": "D38AA363F2597A742B1F891739B85BE88DD09A084730F0D49168C960B4F6E5D6",
+  "has_create_action": false,
+  "hash": "A1CE57649E3403C397BE3B8DE7B39FCFBF6BC9926AC7365549446577308C0E3D",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -89,5 +99,5 @@
   },
   "repo": "Elixir.AshTest.Repo",
   "schema": null,
-  "table": "tickets"
+  "table": "users"
 }

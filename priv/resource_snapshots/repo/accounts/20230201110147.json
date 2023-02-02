@@ -2,7 +2,7 @@
   "attributes": [
     {
       "allow_nil?": false,
-      "default": "nil",
+      "default": "fragment(\"uuid_generate_v4()\")",
       "generated?": false,
       "primary_key?": true,
       "references": null,
@@ -31,13 +31,33 @@
       "type": "utc_datetime_usec"
     },
     {
-      "allow_nil?": true,
+      "allow_nil?": false,
       "default": "nil",
       "generated?": false,
       "primary_key?": false,
       "references": null,
       "size": null,
-      "source": "name",
+      "source": "username",
+      "type": "text"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "primary_key?": false,
+      "references": null,
+      "size": null,
+      "source": "email",
+      "type": "citext"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "primary_key?": false,
+      "references": null,
+      "size": null,
+      "source": "hashed_password",
       "type": "text"
     }
   ],
@@ -46,8 +66,25 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "44FA83BD7ADC78C1B33627619A03C6859976FA4E268437C138A6052F3B909BAA",
-  "identities": [],
+  "hash": "7A53B46691F9C45F7F6141803C37EF23FC41E315CAD5C72BAD26842770867A31",
+  "identities": [
+    {
+      "base_filter": null,
+      "index_name": "accounts_unique_email_index",
+      "keys": [
+        "email"
+      ],
+      "name": "unique_email"
+    },
+    {
+      "base_filter": null,
+      "index_name": "accounts_unique_username_index",
+      "keys": [
+        "username"
+      ],
+      "name": "unique_username"
+    }
+  ],
   "multitenancy": {
     "attribute": null,
     "global": null,
@@ -55,5 +92,5 @@
   },
   "repo": "Elixir.AshTest.Repo",
   "schema": null,
-  "table": "representatives"
+  "table": "accounts"
 }
