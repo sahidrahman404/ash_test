@@ -1,8 +1,10 @@
 defmodule AshTestWeb.Router do
   use AshTestWeb, :router
+  use AshAuthentication.Phoenix.Router
 
   pipeline :api do
     plug(:accepts, ["json"])
+    plug(:load_from_bearer)
   end
 
   scope "/api", AshTestWeb do
@@ -13,6 +15,8 @@ defmodule AshTestWeb.Router do
     pipe_through(:api)
 
     forward("/ashtest", AshTestWeb.Support.Router)
+    sign_out_route(AshTestWeb.ApiAuthController)
+    auth_routes_for(AshTest.User.Account, to: AshTestWeb.ApiAuthController)
   end
 
   scope "/" do
@@ -21,7 +25,7 @@ defmodule AshTestWeb.Router do
     forward(
       "/playground",
       Absinthe.Plug.GraphiQL,
-      schema:  AshTestWeb.Support.Schema,
+      schema: AshTestWeb.Support.Schema,
       interface: :playground
     )
   end
