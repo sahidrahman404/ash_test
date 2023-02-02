@@ -28,7 +28,7 @@ config :ash_test, AshTest.Mailer, adapter: Swoosh.Adapters.Local
 
 ## ash
 config :ash_test,
-  ash_apis: [AshTest.Support]
+  ash_apis: [AshTest.Support, AshTest.User]
 
 config :ash_test,
   ecto_repos: [AshTest.Repo]
@@ -36,6 +36,9 @@ config :ash_test,
 config :mime, :types, %{
   "application/vnd.api+json" => ["json"]
 }
+
+config :ash_test, 
+  :use_all_identities_in_manage_relationship?, false
 
 # Configures Elixir's Logger
 config :logger, :console,
