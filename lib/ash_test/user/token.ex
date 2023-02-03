@@ -1,7 +1,7 @@
 defmodule AshTest.User.Token do
   use Ash.Resource,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshJsonApi.Resource, AshGraphql.Resource, AshAuthentication.TokenResource]
+    extensions: [AshAuthentication.TokenResource]
 
   postgres do
     table("tokens")
