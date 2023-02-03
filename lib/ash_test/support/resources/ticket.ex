@@ -18,6 +18,7 @@ defmodule AshTest.Support.Ticket do
     mutations do
       # And so on
       create(:create_ticket, :open)
+      update(:assign_ticket, :assign)
       update(:update_ticket, :update)
       destroy(:destroy_ticket, :destroy)
     end
@@ -51,6 +52,13 @@ defmodule AshTest.Support.Ticket do
       # By default you can provide all public attributes to an action
       # This action should only accept the subject
       accept([:subject])
+
+      argument :account_id, :uuid do
+        # This action requires representative_id
+        allow_nil?(false)
+      end
+
+      change(manage_relationship(:account_id, :account, type: :append_and_remove))
     end
 
     update :close do
@@ -67,12 +75,12 @@ defmodule AshTest.Support.Ticket do
     update :assign do
       accept([])
 
-      argument :representative_id, :uuid do
+      argument :account_id, :uuid do
         # This action requires representative_id
         allow_nil?(false)
       end
 
-      change(manage_relationship(:representative_id, :representative, type: :append_and_remove))
+      change(manage_relationship(:account_id, :account, type: :append_and_remove))
     end
   end
 
@@ -107,6 +115,10 @@ defmodule AshTest.Support.Ticket do
 
   relationships do
     belongs_to(:representative, AshTest.Support.Representative)
+
+    belongs_to :account, AshTest.User.Account do
+      api AshTest.User
+    end
   end
 
   code_interface do
