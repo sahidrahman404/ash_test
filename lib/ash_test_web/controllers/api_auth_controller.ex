@@ -9,6 +9,7 @@ defmodule AshTestWeb.ApiAuthController do
     |> json(%{
       authentication: %{
         status: :success,
+        id: account.id,
         bearer: token
       }
     })
