@@ -1,7 +1,7 @@
 defmodule AshTestWeb.Support.Schema do
   use Absinthe.Schema
 
-  @apis [AshTest.Support]
+  @apis [AshTest.Support, AshTest.User]
 
   use AshGraphql, apis: @apis
 
